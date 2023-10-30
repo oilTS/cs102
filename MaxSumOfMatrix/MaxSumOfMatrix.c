@@ -6,37 +6,58 @@ Thanlada Sampanpaisansuk
 
 int main()
 {
-    int n,i,j,sum;
+    int n, i, j, sum=0, rsum=0, csum=0, odd=n/2, cen1=n/2-1, cen2=n/2, dsum1=0, dsum2=0, maxsum=0;
     scanf("%d", &n);
 
-    int matrix[100][100];
+    int matrix[n][n];
 
-    for (int i = 0; i < n; i++)
+    for (i = 0; i < n; i++)
     {
-        for (int j = 0; j < n; j++)
+        for (j = 0; j < n; j++)
         {
             scanf("%d", &matrix[i][j]);
         }
     }
 
-    if ( n%2 != 0)
-        for (i = 0; i < 3; i++)
+    if ( n%2 == 1) //odd
+        for (i = 0; i < n; i++)
         {
-            for (j = 0; j < 3; j++)
-            {
-                rowsum += matrix[i][midodd];
-            colsum += matrix[midodd][i];
-            }
+            rsum += matrix[i][odd];
+            csum += matrix[odd][i];
         }
     else
     {
-        for (int i = 0; i<num ;i++)
+        for (i = 0; i < n; i++)
         {
-            sum3 += (inp[i][center1] + inp[i][center2])/2;
-            sum4 += (inp[center1][i] + inp[center2][i])/2;
+            rsum += (matrix[i][cen1] + matrix[i][cen2])/2;
+            csum += (matrix[cen1][i] + matrix[cen2][i])/2;
         }
 
     }
-    printf("%d", maxsum);
+    for (i = 0; i < n; i++)
+    {
+        dsum1 += matrix[i][i];
+        dsum2 += matrix[i][n - 1 - i];
+    }
+
+    if (rsum > maxsum)
+    {
+        maxsum = rsum;
+    }
+    if (csum > maxsum) {
+        maxsum = csum;
+    }
+    if (dsum1 > maxsum) {
+        maxsum = dsum1;
+    }
+    if (dsum2 > maxsum) {
+        maxsum = dsum2;
+    }
+    printf("%d\n", maxsum);
+    printf("%d\n", rsum);
+    printf("%d\n", csum);
+    printf("%d\n", dsum1);
+    printf("%d\n", dsum2);
+
     return 0;
 }
