@@ -2,39 +2,52 @@
 Thanlada Sampanpaisansuk
 6609612012
 */
+
 #include <stdio.h>
 #include <string.h>
 
 int main() {
-    char input[255];
+    char input[100] ;
     scanf("%s", input);
+    int monthCount[12] = {0};
+    int typeCount[12][26] = {0};
 
-    int orchidCount[13][26] = {0};
-    for (int i = 0; i < strlen(input); i += 2) {
-        int month = input[i] - '0';
-        if (input[i] >= 'A' && input[i] <= 'F') {
-            month = 10 + (input[i] - 65);
+    int i = 0;
+    while (i < strlen(input)) {
+        if (isdigit(input[i]) && isalpha(input[i + 1])) {
+            int month = input[i] - '0';
+            char tree = input[i + 1] - 'A';
+            monthCount[month - 1]++;
+            typeCount[month - 1][tree]++;
+            i += 2;
+        } else {
+            // Handle invalid input
+            printf("Invalid input at index %d: %c%c\n", i, input[i], input[i + 1]);
+            break;
         }
-
-        int orchidSpecies = input[i + 1] - 65;
-        orchidCount[month][orchidSpecies]++;
     }
 
-    int maxOrchidCount = 0;
-    for (int i = 1; i <= 12; i++) {
-        int monthOrchidCount = 0;
-        for (int j = 0; j < 26; j++) {
-            if (orchidCount[i][j] > 0) {
-                monthOrchidCount++;
+    int maxMonth = 0;
+    int maxCount = 0;
+
+    for (int month = 0; month < 12; month++) {
+
+        int count = 0;
+        for (int tree = 0; tree < 26; tree++) {
+            if (typeCount[month][tree] > 0) {
+                count++;
             }
         }
-        printf("%d\n", monthOrchidCount);
+        printf("%d\n\n", count);
 
-        if (monthOrchidCount > maxOrchidCount) {
-            maxOrchidCount = monthOrchidCount;
+        if (count > maxCount) {
+            maxCount = count;
+            maxMonth = month;
         }
     }
+
+    printf("%d\n", maxCount);
+
     return 0;
 }
-
 
