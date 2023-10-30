@@ -6,7 +6,7 @@ Thanlada Sampanpaisansuk
 
 int main()
 {
-    int n, i, j, sum=0, rsum=0, csum=0, odd=n/2, cen1=n/2-1, cen2=n/2, dsum1=0, dsum2=0, maxsum=0;
+    int n, i, j, sum=0, rsum=0, csum=0, odd=(n/2)+1, cen1=n/2+1, cen2=n/2, dsum1=0, dsum2=0, maxsum=0;
     scanf("%d", &n);
 
     int matrix[n][n];
