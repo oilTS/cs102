@@ -22,7 +22,7 @@ int main() {
             i += 2;
         } else {
             // Handle invalid input
-            printf("Invalid input at index %d: %c%c\n", i, input[i], input[i + 1]);
+            printf("%d: %c%c\n", i, input[i], input[i + 1]);
             break;
         }
     }
